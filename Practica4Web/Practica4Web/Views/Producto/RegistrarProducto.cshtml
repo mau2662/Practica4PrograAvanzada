@@ -1,81 +1,110 @@
 ﻿@model Practica4Web.Entities.ProductoEnt
 
-
 @{
     ViewData["Title"] = "RegistrarProducto";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
 <div class="col-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">Registro</h4>
+            <h4 class="card-title">Registro de compras pendientes</h4>
 
-
-            <form class="forms-sample" id="formAccountSettings" method="post" asp-action="RegistrarProducto" asp-controller="Producto">
-
-                @Html.HiddenFor(m => m.Id_Compra)
-
+            <form class="forms-sample" id="formAccountSettings" method="post" asp-action="RegistrarAbono" asp-controller="Producto">
                 <div class="form-group">
                     <label for="Id_Compra">Compra</label>
-                    @Html.DropDownListFor(m => m.Id_Compra, ViewBag.Productos as List<SelectListItem>, new { @class = "form-control form-control-lg", id = "Id_Compra" })
+                    @Html.DropDownListFor(x => x.Id_Compra, ViewBag.ProductosPendientesDropDown as List<SelectListItem>,
+                             new { @class = "form-control", id = "Id_Compra", @required = "required", placeholder = "Seleccione un valor" })
                 </div>
 
-                <button type="button" class="btn btn-primary" id="btnConsultarSaldo">Consultar Saldo</button>
+                <div class="form-group">
+                    <label for="Saldo">Saldo</label>
+                    <input type="text" class="form-control" id="Saldo" readonly />
+                </div>
 
+                <div class="form-group">
+                    <label for="Monto">Abono</label>
+                    @Html.TextBoxFor(m=> m.Monto, new {@class="form-control form-control-lg",@type="number",@placeholder="Monto del Abono"})
+                  
 
-                <div class="form-group" id="saldoContainer">
-                    <label for="Saldo">Saldo Anterior</label>
-                    @Html.TextBoxFor(m => m.Saldo, new { @readOnly = "readOnly", @style = "background-color:#eeeeee", @class = "form-control form-control-lg", @type = "text", @placeholder = "Saldo Anterior", id = "Saldo" })
+                   
                 </div>
 
                 <button type="submit" class="btn btn-primary mr-2">Abonar</button>
-                <button class="btn btn-light">Cancelar</button>
 
+          
             </form>
-
-
-
         </div>
     </div>
 </div>
 
 
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 
+@section scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(document).ready(function () {
+            // Obtener saldo al cambiar la selección
+            $("#Id_Compra").change(function () {
+                var selectedValue = $(this).val();
+                $.ajax({
+                    url: "/Producto/ObtenerSaldoIdCompra",
+                    type: "GET",
+                    data: { Id_Compra: selectedValue },
+                    success: function (data) {
+                        if (data && data.saldo !== undefined) {
+                            $("#Saldo").val(data.saldo);
+                        } else {
+                            console.log("Error: Propiedad 'saldo' no encontrada en la respuesta");
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.log("Error en la solicitud Ajax:", status, error);
+                    }
+                });
+            });
 
+            // Realizar abono al presionar el botón "Abonar"
+            $("#formAccountSettings").submit(function (event) {
+                event.preventDefault();
 
+                var formData = $(this).serialize();
 
-<script>
-    $(document).ready(function () {
-        // Manejar el evento de clic del botón Consultar Saldo
-        $("#btnConsultarSaldo").click(function () {
-            // Obtener el valor seleccionado del DropDownList
-            var selectedCompra = $("#Id_Compra").val();
+                $.ajax({
+                    url: "/Producto/RegistrarAbono",
+                    type: "POST",
+                    data: formData,
+                    success: function (data) {
+                        var abonoExitoso = true;
 
-            // Realizar una solicitud para obtener el saldo asociado a la compra seleccionada
-            // Puedes ajustar la URL según tu aplicación
-            $.ajax({
-                url: '/Producto/ObtenerSaldoIdCompra',
-                type: 'GET',
-                data: { idCompra: selectedCompra },
-                success: function (data) {
-                    console.log(typeof data); // Verifica el tipo de dato (debería ser 'string')
+                        if (abonoExitoso) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Abono realizado correctamente',
+                                showConfirmButton: false,
+                                timer: 1500
+                            }).then(() => {
+                                // Recargar la página actual después de la alerta
+                                window.location.reload();
+                            });
+                        }
+                    },
 
-                    // Convierte el valor a un número antes de asignarlo al campo de saldo
-                    var saldoAsNumber = parseFloat(data);
-
-                    // Verifica el valor convertido en la consola
-                    console.log(saldoAsNumber);
-
-                    // Actualizar el valor del campo de saldo
-                    $("#Saldo").val(saldoAsNumber);
-                },
-                error: function () {
-                    alert('Error al obtener el saldo.');
-                }
+                    error: function (xhr, status, error) {
+                        console.log("Error en la solicitud Ajax:", status, error);
+                    }
+                });
             });
         });
-    });
-</script>
+
+
+
+    </script>
+}
+
+
+
+

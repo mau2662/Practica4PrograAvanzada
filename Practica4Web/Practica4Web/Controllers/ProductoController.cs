@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Practica4Web.Entities;
 using Practica4Web.Models;
+using System.Reflection;
 
 namespace Practica4Web.Controllers
 {
@@ -23,40 +24,70 @@ namespace Practica4Web.Controllers
         [HttpGet]
         public IActionResult ConsultarProducto()
         {
-            return View();
+            var datos = _productoModel.Consultar();
+            return View(datos);
         }
 
 
         [HttpGet]
         public IActionResult RegistrarProducto()
         {
+            var ProductosPendientes = _productoModel.ConsultarProductosPendientes();
 
+            var ProductosPendientesDropDown = new List<SelectListItem>
+    {
+        new SelectListItem { Value = "", Text = "Seleccione un producto", Selected = true }
+    };
 
-            ViewBag.Productos = _productoModel.ConsultarProductos();
+            foreach (var item in ProductosPendientes.Objetos)
+            {
+                ProductosPendientesDropDown.Add(new SelectListItem { Value = item.Id_Compra.ToString(), Text = item.Descripcion });
+            }
 
+            ViewBag.ProductosPendientesDropDown = ProductosPendientesDropDown;
 
             return View();
-
-
         }
 
 
 
         [HttpGet]
-        public IActionResult ObtenerSaldoIdCompra()
+        public IActionResult ObtenerSaldoIdCompra(long Id_Compra)
         {
+           
+            var respuesta = _productoModel.ObtenerSaldoIdCompra(Id_Compra);
 
-            var entidad = new ProductoEnt();       
-            var saldo = _productoModel.ObtenerSaldoIdCompra(entidad.Id_Compra);
-            ViewBag.Productos = _productoModel.ConsultarProductos();
-
-            return Json(saldo);
-
-         
-
+            if (respuesta.Objeto != null)
+            {
+               
+                return Json(new { Saldo = respuesta.Objeto.Saldo });
+            }
+            else
+            {
+               
+                return Json(new { Saldo = 0 }); 
+            }
         }
 
 
+        [HttpPost]
+        public IActionResult RegistrarAbono(ProductoEnt entidad)
+        {
+            var resp = _productoModel.RegistrarAbono(entidad);
+            if (resp > 1)
+            {
+                return RedirectToAction("RegistrarProducto", "Producto");
+            }
+            else
+            {
+                ViewBag.MensajePantalla = "No se logro registrar el abono";
+                return View();
+
+            }
+
+
+
+        }
 
 
 

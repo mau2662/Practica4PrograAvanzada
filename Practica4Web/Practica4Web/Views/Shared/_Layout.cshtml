@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="~/template/css/select.dataTables.min.css">
     <link rel="stylesheet" href="~/template/css/vertical-layout-light/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.10.1/sweetalert2.css">
 
 </head>
 <body>
@@ -64,7 +64,7 @@
                         @RenderBody()
                     </div>
                 </div>
-
+                @RenderSection("scripts", required: false)
                 <footer class="footer">
                     <div class="d-sm-flex justify-content-center justify-content-sm-between">
                         <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © @DateTime.Now.Year. Derechos Reservados</span>
@@ -87,6 +87,7 @@
     <script src="~/template/js/todolist.js"></script>
     <script src="~/template/js/dashboard.js"></script>
     <script src="~/template/js/Chart.roundedBarCharts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.10.1/sweetalert2.min.js"> </script>
 
 </body>
 </html>

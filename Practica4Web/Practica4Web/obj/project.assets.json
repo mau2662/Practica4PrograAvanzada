@@ -9550,11 +9550,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\varga\\OneDrive\\Documentos\\GitHub\\Practica4PrograAvanzada\\Practica4Web\\Practica4Web\\Practica4Web.csproj",
+      "projectUniqueName": "C:\\Users\\varga\\OneDrive\\Escritorio\\Practica4PrograAvanzada-main\\Practica4PrograAvanzada-main\\Practica4Web\\Practica4Web\\Practica4Web.csproj",
       "projectName": "Practica4Web",
-      "projectPath": "C:\\Users\\varga\\OneDrive\\Documentos\\GitHub\\Practica4PrograAvanzada\\Practica4Web\\Practica4Web\\Practica4Web.csproj",
+      "projectPath": "C:\\Users\\varga\\OneDrive\\Escritorio\\Practica4PrograAvanzada-main\\Practica4PrograAvanzada-main\\Practica4Web\\Practica4Web\\Practica4Web.csproj",
       "packagesPath": "C:\\Users\\varga\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\varga\\OneDrive\\Documentos\\GitHub\\Practica4PrograAvanzada\\Practica4Web\\Practica4Web\\obj\\",
+      "outputPath": "C:\\Users\\varga\\OneDrive\\Escritorio\\Practica4PrograAvanzada-main\\Practica4PrograAvanzada-main\\Practica4Web\\Practica4Web\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

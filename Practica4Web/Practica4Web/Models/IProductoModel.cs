@@ -5,12 +5,14 @@ namespace Practica4Web.Models
 {
     public interface IProductoModel
     {
-        public List<SelectListItem>? ConsultarProductos();
+        public ProductoEntRespuesta? ConsultarProductosPendientes();
 
 
+        public ProductoEntRespuesta? ObtenerSaldoIdCompra(long Id_Compra);
 
-        public ProductoEnt? ObtenerSaldoIdCompra(long Id_Compra);
+        public List<ProductoEnt> Consultar();
 
+        public int RegistrarAbono(ProductoEnt entidad);
 
 
     }

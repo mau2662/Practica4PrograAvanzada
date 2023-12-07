@@ -2,6 +2,8 @@
 using System.Net.Http.Headers;
 using System.Net.Http;
 using Practica4Web.Entities;
+using Newtonsoft.Json;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Practica4Web.Models
 {
@@ -26,45 +28,76 @@ namespace Practica4Web.Models
         }
 
 
-
-
-
-        public List<SelectListItem>? ConsultarProductos()
+        public ProductoEntRespuesta? ConsultarProductosPendientes()
         {
-            string url = _urlApi + "api/Producto/ConsultarProductos";
-            //string token = _HttpContextAccessor.HttpContext.Session.GetString("TokenUsuario");
-            //_httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-
-            var resp = _httpClient.GetAsync(url).Result;
-
-            if (resp.IsSuccessStatusCode)
-                return resp.Content.ReadFromJsonAsync<List<SelectListItem>>().Result;
-            else
-                return null;
+            string url = "api/Producto/ConsultarProductosPendientes";
+            var response = _httpClient.GetAsync(_urlApi + url).Result;
+            return response.Content.ReadFromJsonAsync<ProductoEntRespuesta>().Result;
         }
 
 
 
-
-        public ProductoEnt? ObtenerSaldoIdCompra(long Id_Compra)
+        public ProductoEntRespuesta? ObtenerSaldoIdCompra(long Id_Compra)
         {
             string url = _urlApi + "api/Producto/ObtenerSaldoIdCompra?Id_Compra=" + Id_Compra;
-            var resp = _httpClient.GetAsync(url).Result;
 
-            if (resp.IsSuccessStatusCode)
+            try
             {
-                return resp.Content.ReadFromJsonAsync<ProductoEnt>().Result;
+                var resp = _httpClient.GetAsync(url).Result;
+
+                if (resp.IsSuccessStatusCode)
+                {
+                    var productoEnt = resp.Content.ReadFromJsonAsync<ProductoEntRespuesta>().Result;
+                    Console.WriteLine($"Respuesta de la API: {JsonConvert.SerializeObject(productoEnt)}");
+                    return productoEnt;
+                }
+                else
+                {
+                    // Agrega un log para identificar posibles errores
+                    Console.WriteLine($"Error en la solicitud: {resp.StatusCode}");
+                    return null;
+                }
             }
-            else
+            catch (Exception ex)
             {
+                // Agrega un log para identificar posibles excepciones
+                Console.WriteLine($"Excepción al realizar la solicitud: {ex.Message}");
                 return null;
             }
         }
 
 
+        public List<ProductoEnt> Consultar()
+        {
+            using (var http = new HttpClient())
+            {
+                var url = "https://localhost:7103/api/Producto/ConsultarProductos";
+                var resp = http.GetAsync(url).Result;
+
+                if (resp.IsSuccessStatusCode)
+                    return resp.Content.ReadFromJsonAsync<List<ProductoEnt>>().Result;
+                else
+                    return new List<ProductoEnt>();
+            }
+        }
+
+
+        public int RegistrarAbono(ProductoEnt entidad)
+        {
+            string url = _urlApi + "api/Producto/RegistrarAbono";
+            JsonContent obj = JsonContent.Create(entidad);
+            var resp = _httpClient.PostAsync(url, obj).Result;
+
+            if (resp.IsSuccessStatusCode)
+                return resp.Content.ReadFromJsonAsync<int>().Result;
+            else
+                return 0;
+
+        }
 
 
 
+     
 
     }
 }
