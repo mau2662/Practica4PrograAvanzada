@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "31wCOz49gX4mVUM9w3BUdJIEhFWtQBMRcN1S7hfkO37z3FrKrujAoG7Wwe4RzftEQ6K5LVKEiA8u43n2XGs34w==",
+  "dgSpecHash": "ckOPEmRDnhki/82qh5rWW7ipI7faWXjxB+PmHV0fkWmuFEm0JRX+FcDtVAamWLHBLv59GoTDqFgFteoLRGVU+g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\varga\\Documents\\Practica4\\Practica4Web\\Practica4Web\\Practica4Web.csproj",
+  "projectFilePath": "C:\\Users\\varga\\OneDrive\\Documentos\\GitHub\\Practica4PrograAvanzada\\Practica4Web\\Practica4Web\\Practica4Web.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\varga\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\varga\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
