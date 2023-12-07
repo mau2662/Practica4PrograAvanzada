@@ -1,4 +1,7 @@
-﻿
+﻿@model Practica4Web.Entities.ProductoEnt
+
+
+
 @{
     ViewData["Title"] = "RegistrarProducto";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -9,7 +12,8 @@
         <div class="col-lg-4 mx-auto">
             <div class="auth-form-light text-left py-5 px-4 px-sm-5">
                 <div class="brand-logo">
-                    <img src="~/template/images/logo.svg" alt="logo">
+                  <h1>Registro </h1>
+                    <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">Consultar </button>
                 </div>
 
                 @using (Html.BeginForm("RegistrarProducto", "Producto", FormMethod.Post, new { @class = "pt-3" }))
@@ -17,30 +21,23 @@
 
                     @ViewBag.MensajePantalla
 
+
                     <div class="form-group">
-
-                        @* @Html.TextBoxFor(m => m.identificacion, new { @onkeyup = "ConsultarNombre()", @class = "form-control form-control-lg", @type = "text", @placeholder = "Identificacion" }) *@
-
+                        <label>Compra</label>
+                        @*@Html.DropDownListFor(m => m.ConProvincia, ViewBag.Provincias as List<SelectListItem>, new { @class="form-control form-control-lg" })*@
                     </div>
 
                     <div class="form-group">
-
-                        @* @Html.TextBoxFor(m => m.nombre, new { @readOnly = "readOnly", @style = "background-color:#eeeeee", @class = "form-control form-control-lg", @type = "text", @placeholder = "Nombre" }) *@
+                        <label>Saldo Anterior</label>
+                         @Html.TextBoxFor(m => m.Saldo, new { @readOnly = "readOnly", @style = "background-color:#eeeeee", @class = "form-control form-control-lg", @type = "text", @placeholder = "Saldo Anterior" }) 
                     </div>
 
                     <div class="form-group">
+                        <label>Abono</label>
 
-                        @* @Html.TextBoxFor(m => m.usuario, new { @class = "form-control form-control-lg", @type = "text", @placeholder = "Usuario" }) *@
+                        @Html.TextBoxFor(m => m.Monto, new { @class = "form-control form-control-lg", @type = "text", @placeholder = "Abono" })
                     </div>
-                    <div class="form-group">
-
-                        @* @Html.TextBoxFor(m => m.correo, new { @class = "form-control form-control-lg", @type = "email", @placeholder = "Correo Electronico" }) *@
-                    </div>
-                    <div class="form-group">
-
-                        @* @Html.TextBoxFor(m => m.contrasenna, new { @onkeypress = "return EvitarEspacios(event)", @class = "form-control form-control-lg", @type = "password", @placeholder = "Contraseña" }) *@
-                    </div>
-
+             
                     <div class="mt-3">
                         <input type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" value="Abonar">
                     </div>
