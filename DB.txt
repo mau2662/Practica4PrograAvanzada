@@ -1,12 +1,95 @@
 USE [master]
 GO
-
+/****** Object:  Database [PracticaS12]    Script Date: 12/7/2023 5:13:01 PM ******/
 CREATE DATABASE [PracticaS12]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'PracticaS12', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.SQLSERVERINSTANCIA1\MSSQL\DATA\PracticaS12.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'PracticaS12_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.SQLSERVERINSTANCIA1\MSSQL\DATA\PracticaS12_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+ WITH CATALOG_COLLATION = DATABASE_DEFAULT
 GO
-
+ALTER DATABASE [PracticaS12] SET COMPATIBILITY_LEVEL = 150
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [PracticaS12].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [PracticaS12] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [PracticaS12] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [PracticaS12] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [PracticaS12] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [PracticaS12] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [PracticaS12] SET AUTO_CLOSE OFF 
+GO
+ALTER DATABASE [PracticaS12] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [PracticaS12] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [PracticaS12] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [PracticaS12] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [PracticaS12] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [PracticaS12] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [PracticaS12] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [PracticaS12] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [PracticaS12] SET  ENABLE_BROKER 
+GO
+ALTER DATABASE [PracticaS12] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [PracticaS12] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [PracticaS12] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [PracticaS12] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [PracticaS12] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [PracticaS12] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [PracticaS12] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [PracticaS12] SET RECOVERY FULL 
+GO
+ALTER DATABASE [PracticaS12] SET  MULTI_USER 
+GO
+ALTER DATABASE [PracticaS12] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [PracticaS12] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [PracticaS12] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [PracticaS12] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+ALTER DATABASE [PracticaS12] SET DELAYED_DURABILITY = DISABLED 
+GO
+ALTER DATABASE [PracticaS12] SET ACCELERATED_DATABASE_RECOVERY = OFF  
+GO
+EXEC sys.sp_db_vardecimal_storage_format N'PracticaS12', N'ON'
+GO
+ALTER DATABASE [PracticaS12] SET QUERY_STORE = OFF
+GO
 USE [PracticaS12]
 GO
-
+/****** Object:  User [admin]    Script Date: 12/7/2023 5:13:01 PM ******/
+CREATE USER [admin] FOR LOGIN [admin] WITH DEFAULT_SCHEMA=[dbo]
+GO
+/****** Object:  Table [dbo].[Abonos]    Script Date: 12/7/2023 5:13:01 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE TABLE [dbo].[Abonos](
 	[Id_Compra] [bigint] NOT NULL,
 	[Id_Abono] [bigint] IDENTITY(1,1) NOT NULL,
@@ -18,7 +101,11 @@ CREATE TABLE [dbo].[Abonos](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
+/****** Object:  Table [dbo].[Principal]    Script Date: 12/7/2023 5:13:01 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE TABLE [dbo].[Principal](
 	[Id_Compra] [bigint] IDENTITY(1,1) NOT NULL,
 	[Precio] [decimal](18, 5) NOT NULL,
@@ -31,28 +118,152 @@ CREATE TABLE [dbo].[Principal](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
+SET IDENTITY_INSERT [dbo].[Abonos] ON 
+GO
+INSERT [dbo].[Abonos] ([Id_Compra], [Id_Abono], [Monto], [Fecha]) VALUES (1, 1, CAST(10000.00 AS Decimal(18, 2)), CAST(N'2023-12-07T16:35:06.687' AS DateTime))
+GO
+INSERT [dbo].[Abonos] ([Id_Compra], [Id_Abono], [Monto], [Fecha]) VALUES (1, 2, CAST(40000.00 AS Decimal(18, 2)), CAST(N'2023-12-07T16:35:36.603' AS DateTime))
+GO
+INSERT [dbo].[Abonos] ([Id_Compra], [Id_Abono], [Monto], [Fecha]) VALUES (3, 3, CAST(0.00 AS Decimal(18, 2)), CAST(N'2023-12-07T16:38:57.490' AS DateTime))
+GO
+INSERT [dbo].[Abonos] ([Id_Compra], [Id_Abono], [Monto], [Fecha]) VALUES (2, 4, CAST(500.00 AS Decimal(18, 2)), CAST(N'2023-12-07T16:46:05.433' AS DateTime))
+GO
+INSERT [dbo].[Abonos] ([Id_Compra], [Id_Abono], [Monto], [Fecha]) VALUES (2, 5, CAST(1000.00 AS Decimal(18, 2)), CAST(N'2023-12-07T16:47:38.467' AS DateTime))
+GO
+INSERT [dbo].[Abonos] ([Id_Compra], [Id_Abono], [Monto], [Fecha]) VALUES (2, 6, CAST(1000.00 AS Decimal(18, 2)), CAST(N'2023-12-07T16:48:15.990' AS DateTime))
+GO
+INSERT [dbo].[Abonos] ([Id_Compra], [Id_Abono], [Monto], [Fecha]) VALUES (2, 7, CAST(2000.00 AS Decimal(18, 2)), CAST(N'2023-12-07T16:49:07.293' AS DateTime))
+GO
+INSERT [dbo].[Abonos] ([Id_Compra], [Id_Abono], [Monto], [Fecha]) VALUES (2, 8, CAST(2000.00 AS Decimal(18, 2)), CAST(N'2023-12-07T16:49:37.683' AS DateTime))
+GO
+INSERT [dbo].[Abonos] ([Id_Compra], [Id_Abono], [Monto], [Fecha]) VALUES (2, 9, CAST(2000.00 AS Decimal(18, 2)), CAST(N'2023-12-07T16:56:19.913' AS DateTime))
+GO
+INSERT [dbo].[Abonos] ([Id_Compra], [Id_Abono], [Monto], [Fecha]) VALUES (4, 10, CAST(20.00 AS Decimal(18, 2)), CAST(N'2023-12-07T16:59:05.377' AS DateTime))
+GO
+INSERT [dbo].[Abonos] ([Id_Compra], [Id_Abono], [Monto], [Fecha]) VALUES (4, 11, CAST(200.00 AS Decimal(18, 2)), CAST(N'2023-12-07T16:59:50.490' AS DateTime))
+GO
+INSERT [dbo].[Abonos] ([Id_Compra], [Id_Abono], [Monto], [Fecha]) VALUES (2, 12, CAST(1500.00 AS Decimal(18, 2)), CAST(N'2023-12-07T17:04:19.290' AS DateTime))
+GO
+INSERT [dbo].[Abonos] ([Id_Compra], [Id_Abono], [Monto], [Fecha]) VALUES (2, 13, CAST(500.00 AS Decimal(18, 2)), CAST(N'2023-12-07T17:04:26.737' AS DateTime))
+GO
+INSERT [dbo].[Abonos] ([Id_Compra], [Id_Abono], [Monto], [Fecha]) VALUES (2, 14, CAST(2000.00 AS Decimal(18, 2)), CAST(N'2023-12-07T17:04:39.397' AS DateTime))
+GO
+INSERT [dbo].[Abonos] ([Id_Compra], [Id_Abono], [Monto], [Fecha]) VALUES (4, 15, CAST(500.00 AS Decimal(18, 2)), CAST(N'2023-12-07T17:06:04.357' AS DateTime))
+GO
+INSERT [dbo].[Abonos] ([Id_Compra], [Id_Abono], [Monto], [Fecha]) VALUES (3, 16, CAST(600.00 AS Decimal(18, 2)), CAST(N'2023-12-07T17:06:28.263' AS DateTime))
+GO
+INSERT [dbo].[Abonos] ([Id_Compra], [Id_Abono], [Monto], [Fecha]) VALUES (4, 17, CAST(500.00 AS Decimal(18, 2)), CAST(N'2023-12-07T17:09:13.130' AS DateTime))
+GO
+SET IDENTITY_INSERT [dbo].[Abonos] OFF
+GO
 SET IDENTITY_INSERT [dbo].[Principal] ON 
 GO
-INSERT [dbo].[Principal] ([Id_Compra], [Precio], [Saldo], [Descripcion], [Estado]) VALUES (1, CAST(50000.00000 AS Decimal(18, 5)), CAST(50000.00000 AS Decimal(18, 5)), N'Producto 1', N'Pendiente')
+INSERT [dbo].[Principal] ([Id_Compra], [Precio], [Saldo], [Descripcion], [Estado]) VALUES (1, CAST(50000.00000 AS Decimal(18, 5)), CAST(0.00000 AS Decimal(18, 5)), N'Producto 1', N'Cancelado')
 GO
-INSERT [dbo].[Principal] ([Id_Compra], [Precio], [Saldo], [Descripcion], [Estado]) VALUES (2, CAST(13500.00000 AS Decimal(18, 5)), CAST(13500.00000 AS Decimal(18, 5)), N'Producto 2', N'Pendiente')
+INSERT [dbo].[Principal] ([Id_Compra], [Precio], [Saldo], [Descripcion], [Estado]) VALUES (2, CAST(13500.00000 AS Decimal(18, 5)), CAST(1000.00000 AS Decimal(18, 5)), N'Producto 2', N'Pendiente')
 GO
-INSERT [dbo].[Principal] ([Id_Compra], [Precio], [Saldo], [Descripcion], [Estado]) VALUES (3, CAST(83600.00000 AS Decimal(18, 5)), CAST(83600.00000 AS Decimal(18, 5)), N'Producto 3', N'Pendiente')
+INSERT [dbo].[Principal] ([Id_Compra], [Precio], [Saldo], [Descripcion], [Estado]) VALUES (3, CAST(83600.00000 AS Decimal(18, 5)), CAST(83000.00000 AS Decimal(18, 5)), N'Producto 3', N'Pendiente')
 GO
-INSERT [dbo].[Principal] ([Id_Compra], [Precio], [Saldo], [Descripcion], [Estado]) VALUES (4, CAST(1220.00000 AS Decimal(18, 5)), CAST(1220.00000 AS Decimal(18, 5)), N'Producto 4', N'Pendiente')
+INSERT [dbo].[Principal] ([Id_Compra], [Precio], [Saldo], [Descripcion], [Estado]) VALUES (4, CAST(1220.00000 AS Decimal(18, 5)), CAST(0.00000 AS Decimal(18, 5)), N'Producto 4', N'Cancelado')
 GO
 INSERT [dbo].[Principal] ([Id_Compra], [Precio], [Saldo], [Descripcion], [Estado]) VALUES (5, CAST(480.00000 AS Decimal(18, 5)), CAST(480.00000 AS Decimal(18, 5)), N'Producto 5', N'Pendiente')
 GO
 SET IDENTITY_INSERT [dbo].[Principal] OFF
 GO
-
 ALTER TABLE [dbo].[Abonos]  WITH CHECK ADD  CONSTRAINT [FK_Abonos_Principal] FOREIGN KEY([Id_Compra])
 REFERENCES [dbo].[Principal] ([Id_Compra])
 GO
 ALTER TABLE [dbo].[Abonos] CHECK CONSTRAINT [FK_Abonos_Principal]
 GO
+/****** Object:  StoredProcedure [dbo].[ConsultarProductos]    Script Date: 12/7/2023 5:13:01 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[ConsultarProductos]
+AS
+BEGIN
+    SELECT Id_Compra, Precio, Saldo, Descripcion, Estado
+    FROM Principal
+    ORDER BY CASE WHEN Estado = 'pendiente' THEN 0 ELSE 1 END, Id_Compra;
+END;
 
+
+GO
+/****** Object:  StoredProcedure [dbo].[SPConsultarProductos]    Script Date: 12/7/2023 5:13:01 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE procedure [dbo].[SPConsultarProductos]
+as
+SELECT *
+  FROM [PracticaS12].[dbo].[Principal]
+where Estado = 'Pendiente'
+GO
+/****** Object:  StoredProcedure [dbo].[SPObtenerSaldoIdCompra]    Script Date: 12/7/2023 5:13:01 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE procedure [dbo].[SPObtenerSaldoIdCompra]
+(
+@Id_Compra BIGINT
+)
+AS
+SELECT Saldo
+  FROM [PracticaS12].[dbo].[Principal]
+  WHERE Id_Compra = @Id_Compra
+GO
+/****** Object:  StoredProcedure [dbo].[SPRegistrarAbono]    Script Date: 12/7/2023 5:13:01 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE procedure  [dbo].[SPRegistrarAbono]
+  (
+@Id_Compra bigint ,
+@Monto decimal(18,2) )
+as
+begin
+DECLARE @ResultPendiente int;
+DECLARE @ResultSaldo decimal(18,2);
+
+select @ResultPendiente = count(Id_Compra) FROM [PracticaS12].[dbo].[Principal] 
+  WHERE Estado = 'Pendiente' and Id_Compra = @Id_Compra;
+
+select @ResultSaldo = saldo FROM [PracticaS12].[dbo].[Principal] 
+  WHERE Estado = 'Pendiente' and Id_Compra = @Id_Compra;
+
+
+if (@ResultPendiente > 0)
+begin
+
+if(@ResultSaldo > = @Monto)
+begin
+
+INSERT [PracticaS12].[dbo].[Abonos] (Id_Compra,Monto,Fecha) VALUES (@Id_Compra,@Monto,GETDATE() );
+
+
+UPDATE [PracticaS12].[dbo].[Principal]  SET Saldo = ( Saldo - @Monto ) WHERE Id_Compra = @Id_Compra;
+
+select @ResultSaldo = saldo FROM [PracticaS12].[dbo].[Principal] 
+  WHERE Estado = 'Pendiente' and Id_Compra = @Id_Compra;
+
+
+IF  (@ResultSaldo = 0)
+BEGIN 
+UPDATE [PracticaS12].[dbo].[Principal]  SET Estado = 'Cancelado' WHERE Id_Compra = @Id_Compra;
+END
+
+end
+
+end
+
+
+end 
+GO
 USE [master]
 GO
 ALTER DATABASE [PracticaS12] SET  READ_WRITE 

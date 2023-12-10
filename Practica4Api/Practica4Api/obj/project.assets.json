@@ -724,11 +724,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\varga\\OneDrive\\Escritorio\\Practica4PrograAvanzada-main\\Practica4PrograAvanzada-main\\Practica4Api\\Practica4Api\\Practica4Api.csproj",
+      "projectUniqueName": "C:\\Users\\varga\\OneDrive\\Documentos\\GitHub\\Practica4PrograAvanzada\\Practica4Api\\Practica4Api\\Practica4Api.csproj",
       "projectName": "Practica4Api",
-      "projectPath": "C:\\Users\\varga\\OneDrive\\Escritorio\\Practica4PrograAvanzada-main\\Practica4PrograAvanzada-main\\Practica4Api\\Practica4Api\\Practica4Api.csproj",
+      "projectPath": "C:\\Users\\varga\\OneDrive\\Documentos\\GitHub\\Practica4PrograAvanzada\\Practica4Api\\Practica4Api\\Practica4Api.csproj",
       "packagesPath": "C:\\Users\\varga\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\varga\\OneDrive\\Escritorio\\Practica4PrograAvanzada-main\\Practica4PrograAvanzada-main\\Practica4Api\\Practica4Api\\obj\\",
+      "outputPath": "C:\\Users\\varga\\OneDrive\\Documentos\\GitHub\\Practica4PrograAvanzada\\Practica4Api\\Practica4Api\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

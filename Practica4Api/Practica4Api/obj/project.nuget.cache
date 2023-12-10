@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "GqiB01ri+szoncEDwC6DwMDh8PSXoMfM6KKbYmXtq0pxme8HOs0EpoDw0goK0BQdQA2ZAekWdhnNRLh7D96rlA==",
+  "dgSpecHash": "HpHOUc8oBe0+jGSuCFi++A2kyXk9p9y8HYBfZVca2B70c4p6As1Z2Ar+szoX+HJ11v0zmiMXnCly5oAX8i0r4Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\varga\\OneDrive\\Escritorio\\Practica4PrograAvanzada-main\\Practica4PrograAvanzada-main\\Practica4Api\\Practica4Api\\Practica4Api.csproj",
+  "projectFilePath": "C:\\Users\\varga\\OneDrive\\Documentos\\GitHub\\Practica4PrograAvanzada\\Practica4Api\\Practica4Api\\Practica4Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\varga\\.nuget\\packages\\dapper\\2.1.24\\dapper.2.1.24.nupkg.sha512",
     "C:\\Users\\varga\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
